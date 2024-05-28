@@ -4,6 +4,8 @@ import styles from "./Content.module.css"
 import { useEffect, useState } from "react";
 
 export default function Content() {
+    const [themeMode, setThemeMode] = useState<string>("dark-mode");
+    const [currentString, setCurrentString] = useState<string>("");
     const buttons: IButton[] = [
         {name: "AC", class: "primary-button", type: "clear"}, {name: "+/-", class: "primary-button", type: ""}, {name: "%", class: "primary-button", type: ""}, {name: "/", class: "secondary-button", type:""},
         {name: "7", class: "primary-button", type: "number"}, {name: "8", class: "primary-button", type: "number"}, {name: "9", class: "primary-button", type: "number"}, {name: "X", class: "secondary-button", type:""},
@@ -12,13 +14,11 @@ export default function Content() {
         {name: "0", class: "primary-button", type: "number"}, {name: ".", class: "primary-button", type: ""}, {name: "=", class: "primary-button", type: ""}
     ];
 
-    const  [currentString, setCurrentString] = useState<string>("")
-
     useEffect(() => {
-        console.log(currentString); // Access the updated value here
+        console.log(currentString);
       }, [currentString]); 
 
-    const handleClick = (button: string, type?: string) =>{
+    function handleClick(button: string, type?: string){
         let newValue = currentString
         if(type == "number"){
             newValue += button
@@ -26,6 +26,11 @@ export default function Content() {
             newValue = ""
         }
         setCurrentString(newValue)
+    }
+
+    function changeMode(){
+        const mode = themeMode == "light-mode" ? "dark-mode" : "light-mode";
+        setThemeMode(mode)
     }
 
     function checkKeyPressed(e: any){
@@ -37,22 +42,27 @@ export default function Content() {
     }
     
     return (
-        <div className={styles.contentCalculator}>
-            <div className={styles.contentResult}>
-                <p>{currentString == ""
-                        ? "0"
-                        : currentString
-                    }
-                </p>
-            </div>
-            <div className={styles.contentButtons}>
-                {buttons.map((b, i) => (
-                    <Button 
-                        onClick={()=>{handleClick(b.name, b.type)}} 
-                        key={i} 
-                        value={b.name} 
-                    />
-                ))}
+        <div className={`${styles.container} ${themeMode}`}>
+            <div className={`${styles.contentCalculator}`}>
+                <div>
+                    <Button value="" onClick={()=>{changeMode}} />
+                </div>
+                <div className={styles.contentResult}>
+                    <p>{currentString == ""
+                            ? "0"
+                            : currentString
+                        }
+                    </p>
+                </div>
+                <div className={styles.contentButtons}>
+                    {buttons.map((b, i) => (
+                        <Button 
+                            onClick={()=>{handleClick(b.name, b.type)}} 
+                            key={i} 
+                            value={b.name} 
+                        />
+                    ))}
+                </div>
             </div>
         </div>
     );
@@ -62,3 +72,4 @@ export default function Content() {
 
   // fix
   // error textarea 
+  // padronizar funções 

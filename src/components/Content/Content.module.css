@@ -1,3 +1,13 @@
+.container{
+    width: 100%;
+    height: auto;
+    min-height: 100%;
+    padding: 30px 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .contentCalculator{
     max-width: 300px;
 }
@@ -9,12 +19,21 @@
     gap: 5px 5px;
 }
 
-.contentResult textarea{
+.contentResult{
     width: 100%;
-    resize: none;
     border: 0;
     text-align: right;
     padding: 10px 0;
     outline: 0;
     font-size: 30px;
 }
+
+/* dark mode styles */
+.dark-mode{
+    background-color: var(--dark-bg);
+ }
+ 
+ .dark-mode .contentResult{
+   color: var(--dark-color-text-result);
+ }
+/*******************/
