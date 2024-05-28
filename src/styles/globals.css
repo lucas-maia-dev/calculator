@@ -1,0 +1,18 @@
+:root {
+  --dark-bg: #24273a;
+  --dark-color-text: #ffffff;
+  --dark-color-text-result: #a8abb4;
+  --dark-button-primary-bg: #222538;
+  --dark-button-secondary-bg: #888bff;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body{
+  height: auto;
+  min-height: 100%;
+}
